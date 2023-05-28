@@ -9,7 +9,7 @@ export class getLoginUseCase {
     if (user) {
         const wrongPassword = user.password !== password
         if (wrongPassword) {
-            throw new AppError('Wrong Password')
+            throw new AppError('Senha Incorreta.')
         } else {
             return user
         }

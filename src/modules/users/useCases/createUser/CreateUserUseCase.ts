@@ -14,7 +14,7 @@ export class CreateUserUseCase {
         });
 
         if (jaexiste) {
-            throw new AppError('User Already Exists!');
+            throw new AppError('Usuário já existe. Tente Login.');
         }
 
         const user = await prisma.user.create({data: {username,password}})
