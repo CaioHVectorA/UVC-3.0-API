@@ -24,6 +24,7 @@ model User {
 model Comment {
   id         String         @id @default(uuid())
   content    String         @unique
+  comment_by String
   created_at DateTime       @default(now())
   comments   CommentNUSer[] @relation("comment")
 
@@ -37,4 +38,5 @@ model CommentNUSer {
   commentId String
 
   @@id([userId, commentId])
+  @@map("Comment_rent")
 }
