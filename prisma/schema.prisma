@@ -25,6 +25,7 @@ model Comment {
   id         String         @id @default(uuid())
   content    String         @unique
   comment_by String
+  comment_in String
   created_at DateTime       @default(now())
   comments   CommentNUSer[] @relation("comment")
 
