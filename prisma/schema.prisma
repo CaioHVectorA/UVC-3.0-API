@@ -16,7 +16,7 @@ model User {
   password   String
   created_at DateTime       @default(now())
   updated_at DateTime       @updatedAt
-  comments   CommentNUSer[] @relation("user")
+  comments   comment_rent[] @relation("user")
 
   @@map("users")
 }
@@ -27,17 +27,17 @@ model Comment {
   comment_by String
   comment_in String
   created_at DateTime       @default(now())
-  comments   CommentNUSer[] @relation("comment")
+  comments   comment_rent[] @relation("comment")
 
   @@map("comments")
 }
 
-model CommentNUSer {
+model comment_rent {
   user      User    @relation("user", fields: [userId], references: [id])
   userId    String
   comment   Comment @relation("comment", fields: [commentId], references: [id])
   commentId String
 
   @@id([userId, commentId])
-  @@map("Comment_rent")
+  @@map("comment_rent")
 }

@@ -9,6 +9,7 @@ import { createComment } from "./Comment/createComment";
 import { GetComments } from "./Comment/getComments";
 import { deleteComment } from "./Comment/deleteComment";
 import { editComment } from "./Comment/editComment";
+import { createRent } from "./Comment/createRent";
 
 const routes = Router()
 
@@ -21,4 +22,5 @@ routes.use('/comment', createComment)
 routes.use('/comment', GetComments)
 routes.use('/comment',deleteComment)
 routes.use('/comment',editComment)
+routes.use('/comment/rent',createRent)
 export { routes }
