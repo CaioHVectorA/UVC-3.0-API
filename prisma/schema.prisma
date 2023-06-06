@@ -26,9 +26,8 @@ model Comment {
   content    String   @unique
   comment_by String
   comment_in String
-  userId     String
   created_at DateTime @default(now())
-  comments   User     @relation("userComments", fields: [userId], references: [id])
+  comments   User     @relation("userComments", fields: [comment_by], references: [id])
 
   @@map("comments")
 }
