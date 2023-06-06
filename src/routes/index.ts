@@ -1,4 +1,4 @@
-import "express-async-errors"
+import "express-async-errors";
 import { Router } from "express";
 import { userRoutes as createUser } from "./User/createUser";
 import { loginRoutes as Login } from "./User/login";
@@ -9,16 +9,17 @@ import { createComment } from "./Comment/createComment";
 import { GetComments } from "./Comment/getComments";
 import { deleteComment } from "./Comment/deleteComment";
 import { editComment } from "./Comment/editComment";
+import { toggleLikeRouter } from "./Like/ToggleLike";
+const routes = Router();
 
-const routes = Router()
-
-routes.use('/login', Login) // login
-routes.use('/user', createUser) // createUser
-routes.use('/user', deleteUser)
-routes.use('/user', getUser)
-routes.use('/user',updateUser)
-routes.use('/comment', createComment)
-routes.use('/comment', GetComments)
-routes.use('/comment',deleteComment)
-routes.use('/comment',editComment)
-export { routes }
+routes.use("/login", Login); // login
+routes.use("/user", createUser); // createUser
+routes.use("/user", deleteUser);
+routes.use("/user", getUser);
+routes.use("/user", updateUser);
+routes.use("/comment", createComment);
+routes.use("/comment", GetComments);
+routes.use("/comment", deleteComment);
+routes.use("/comment", editComment);
+routes.use("/like", toggleLikeRouter);
+export { routes };
