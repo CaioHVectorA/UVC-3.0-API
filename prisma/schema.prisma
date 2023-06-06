@@ -11,33 +11,51 @@ datasource db {
 }
 
 model User {
-  id         String         @id @default(uuid())
-  username   String         @unique
+  id         String    @id @default(uuid())
+  username   String    @unique
   password   String
-  created_at DateTime       @default(now())
-  updated_at DateTime       @updatedAt
-  comments   comment_rent[] @relation("user")
+  created_at DateTime  @default(now())
+  updated_at DateTime  @updatedAt
+  comments   Comment[] @relation("userComments")
 
   @@map("users")
 }
 
 model Comment {
-  id         String         @id @default(uuid())
-  content    String         @unique
+  id         String   @id @default(uuid())
+  content    String   @unique
   comment_by String
   comment_in String
-  created_at DateTime       @default(now())
-  comments   comment_rent[] @relation("comment")
+  userId     String
+  created_at DateTime @default(now())
+  comments   User     @relation("userComments", fields: [userId], references: [id])
 
   @@map("comments")
 }
 
-model comment_rent {
-  user      User    @relation("user", fields: [userId], references: [id])
-  userId    String
-  comment   Comment @relation("comment", fields: [commentId], references: [id])
-  commentId String
+// model comment_rent {
+//   user      User    @relation("user", fields: [userId], references: [id])
+//   userId    String
+//   comment   Comment @relation("comment", fields: [commentId], references: [id])
+//   commentId String
 
-  @@id([userId, commentId])
-  @@map("comment_rent")
+//   @@id([userId, commentId])
+//   @@map("comment_rent")
+// }
+
+model Hist {
+  ref        String   @unique
+  id         String   @id @default(uuid())
+  created_at DateTime @default(now())
+  last_view  DateTime @default(now())
+  views      Int
+  likesNum   Int
+  likes      Like[]   @relation("userLikes")
+}
+
+model Like {
+  id     Int    @id @default(autoincrement())
+  histId String
+  hist   Hist   @relation("userLikes", fields: [histId], references: [id])
+  userId String
 }
