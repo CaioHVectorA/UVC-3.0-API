@@ -41,3 +41,20 @@ model CommentNUSer {
   @@id([userId, commentId])
   @@map("Comment_rent")
 }
+
+model Hist {
+ref String @unique
+id String @id @default(uuid())
+created_at DateTime @default(now())
+last_view DateTime @default(now())
+views Int 
+likesNum Int
+likes Like[] @relation("userLikes")
+}
+
+model Like {
+id Int @id @default(autoincrement())
+histId String
+hist Hist @relation("userLikes",fields: [histId], references: [id])
+userId String
+}
