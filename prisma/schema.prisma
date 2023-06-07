@@ -22,12 +22,13 @@ model User {
 }
 
 model Comment {
-  id         String   @id @default(uuid())
-  content    String   @unique
-  comment_by String
-  comment_in String
-  created_at DateTime @default(now())
-  comments   User     @relation("userComments", fields: [comment_by], references: [id])
+  id              String   @id @default(uuid())
+  content         String   @unique
+  comment_by      String
+  comment_in      String
+  username_author String
+  created_at      DateTime @default(now())
+  comments        User     @relation("userComments", fields: [comment_by], references: [id])
 
   @@map("comments")
 }
