@@ -28,7 +28,7 @@ model Comment {
   comment_in      String
   username_author String
   created_at      DateTime @default(now())
-  comments        User     @relation("userComments", fields: [comment_by], references: [id])
+  comments        User     @relation("userComments", fields: [comment_by], references: [id], onDelete: Cascade)
 
   @@map("comments")
 }
