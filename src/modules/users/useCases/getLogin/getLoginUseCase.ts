@@ -4,14 +4,20 @@ import { User } from "@prisma/client";
 import { AppError } from "../../../../errors/AppError";
 import { comparePassword } from "../../../jwt";
 export class getLoginUseCase {
-  async execute({ username, password }: getLoginDTO): Promise<User> {
+  async execute({
+    username,
+    password,
+  }: getLoginDTO): Promise<{ username: string; id: string }> {
     const user = await prisma.user.findUnique({ where: { username } });
     if (user) {
       const wrongPassword = !(await comparePassword(password, user.password));
       if (wrongPassword) {
         throw new AppError("Senha Incorreta.");
       } else {
-        return user;
+        return {
+          username: user.username,
+          id: user.id,
+        };
       }
     } else {
       throw new AppError("Usuário não existe.");

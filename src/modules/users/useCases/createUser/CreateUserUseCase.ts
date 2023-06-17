@@ -4,7 +4,10 @@ import { User } from "@prisma/client";
 import { AppError } from "../../../../errors/AppError";
 import { hashPassword } from "../../../jwt";
 export class CreateUserUseCase {
-  async execute({ username, password }: CreateUserDTO): Promise<User> {
+  async execute({
+    username,
+    password,
+  }: CreateUserDTO): Promise<{ username: string; id: string }> {
     const cripPass = await hashPassword(password);
     const jaexiste = await prisma.user.findUnique({
       where: {
@@ -16,9 +19,12 @@ export class CreateUserUseCase {
       throw new AppError("Usuário já existe. Tente Login.");
     }
 
-    const user = await prisma.user.create({
+    const user: User = await prisma.user.create({
       data: { username, password: cripPass },
     });
-    return user;
+    return {
+      username: user.username,
+      id: user.id,
+    };
   }
 }
