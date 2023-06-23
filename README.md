@@ -30,7 +30,7 @@ Atualiza os dados de um usuário. O ID do usuário deve ser fornecido na URL e v
 
 #### `POST /comment`
 
-Cria um novo comentário. Os seguintes campos devem ser fornecidos no corpo da solicitação (req.body): content (conteúdo do comentário), comment_by (usuário) e comment_in (referência à história).
+Cria um novo comentário. Os seguintes campos devem ser fornecidos no corpo da solicitação (req.body): content (conteúdo do comentário), comment_by (ID do usuário), comment_in (ref da história) e UsernameAuthor(Nome de usuário.)
 
 #### `GET /comment/:ref`
 
