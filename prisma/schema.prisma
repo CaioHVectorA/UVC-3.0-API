@@ -23,7 +23,7 @@ model User {
 
 model Comment {
   id              String   @id @default(uuid())
-  content         String   @unique
+  content         String
   comment_by      String
   comment_in      String
   username_author String
@@ -47,7 +47,7 @@ model Hist {
   ref        String   @unique
   id         String   @id @default(uuid())
   created_at DateTime @default(now())
-  last_view  DateTime @default(now())
+  last_view  DateTime
   views      Int
   likesNum   Int
   likes      Like[]   @relation("userLikes")
