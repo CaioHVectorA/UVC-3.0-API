@@ -56,6 +56,6 @@ model Hist {
 model Like {
   id     Int    @id @default(autoincrement())
   histId String
-  hist   Hist   @relation("userLikes", fields: [histId], references: [id])
+  hist   Hist   @relation("userLikes", fields: [histId], references: [id], onDelete: Cascade)
   userId String
 }

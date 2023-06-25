@@ -47,5 +47,4 @@ Edita um comentário existente. O ID do comentário deve ser fornecido na URL e 
 ### Like
 
 #### `POST /like/:histId`
-
-Ativa ou desativa um "Like" em uma história específica. Os seguintes campos devem ser fornecidos na solicitação: isLiked (valor booleano) e userId. Você também deve fornecer o ID de um comentário no caso de desativação.
+Ativa ou desativa um "Like" em uma história específica, a partir de seu ID na req.params. Os seguintes campos devem ser fornecidos na solicitação: isLiked (valor booleano) e userId. Você também deve fornecer o ID de um comentário no caso de desativação.

@@ -19,7 +19,10 @@ export default class HistUseCase {
     ref: string;
     prevHist: Hist;
   }): Promise<Hist> {
-    const HistFound = await prisma.hist.findFirst({ where: { ref } });
+    const HistFound = await prisma.hist.findFirst({
+      where: { ref },
+      include: { likes: true },
+    });
     if (!HistFound) throw new AppError("A história não existe");
     const HistUpdate = await prisma.hist.update({
       where: {
@@ -28,6 +31,7 @@ export default class HistUseCase {
       data: {
         last_view: new Date().toISOString(),
         views: prevHist.views + 1,
+        likesNum: HistFound.likes.length,
       },
     });
     if (!HistUpdate)

@@ -10,6 +10,7 @@ import { GetComments } from "./Comment/getComments";
 import { deleteComment } from "./Comment/deleteComment";
 import { editComment } from "./Comment/editComment";
 import { toggleLikeRouter } from "./Like/ToggleLike";
+import { getLikesRoute } from "./Like/getLikes";
 import { HistRouter } from "./Hist/HistRoute";
 const routes = Router();
 
@@ -23,5 +24,6 @@ routes.use("/comment", GetComments);
 routes.use("/comment", deleteComment);
 routes.use("/comment", editComment);
 routes.use("/like", toggleLikeRouter);
+routes.use("/likes", getLikesRoute);
 routes.use("/hist", HistRouter);
 export { routes };
