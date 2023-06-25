@@ -6,9 +6,11 @@ export default class toggleLikeUseCase {
     console.log(histId, userId);
     if (!isLiked) {
       //@ts-ignore
+      console.log("tentando criar");
       const Like = await prisma.like.create({ data: { userId, histId } });
-      console.log(Like)
+      console.log(Like);
       if (!Like) {
+        console.log("Erro na criação do Like");
         throw new AppError("Ocorreu um erro. 1");
       }
       return 100;
