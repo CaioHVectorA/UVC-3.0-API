@@ -59,3 +59,13 @@ model Like {
   hist   Hist   @relation("userLikes", fields: [histId], references: [id], onDelete: Cascade)
   userId String
 }
+
+model News {
+  id Int @id @default(autoincrement())
+  title String @unique
+  body String?
+  external_link String?
+  image String
+  create_at DateTime @default(now())
+  views Int @default(0)
+}

@@ -12,6 +12,7 @@ import { editComment } from "./Comment/editComment";
 import { toggleLikeRouter } from "./Like/ToggleLike";
 import { getLikesRoute } from "./Like/getLikes";
 import { HistRouter } from "./Hist/HistRoute";
+import { CreateNewsRouter } from "./News/CreateNews";
 const routes = Router();
 
 routes.use("/login", Login); // login
@@ -26,4 +27,5 @@ routes.use("/comment", editComment);
 routes.use("/like", toggleLikeRouter);
 routes.use("/likes", getLikesRoute);
 routes.use("/hist", HistRouter);
+routes.use('/news',CreateNewsRouter)
 export { routes };
