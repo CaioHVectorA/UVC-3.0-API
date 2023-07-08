@@ -13,6 +13,7 @@ import { toggleLikeRouter } from "./Like/ToggleLike";
 import { getLikesRoute } from "./Like/getLikes";
 import { HistRouter } from "./Hist/HistRoute";
 import { CreateNewsRouter } from "./News/CreateNews";
+import { GetNewsRoute } from "./News/GetNews";
 const routes = Router();
 
 routes.use("/login", Login); // login
@@ -28,4 +29,5 @@ routes.use("/like", toggleLikeRouter);
 routes.use("/likes", getLikesRoute);
 routes.use("/hist", HistRouter);
 routes.use('/news',CreateNewsRouter)
+routes.use('/news',GetNewsRoute)
 export { routes };

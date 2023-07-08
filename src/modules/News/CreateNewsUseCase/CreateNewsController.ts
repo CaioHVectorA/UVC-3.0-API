@@ -1,13 +1,14 @@
 import { News } from "@prisma/client";
-import { Request, Response } from "express";
+import { Request, Response, response } from "express";
 import CreateNewsUseCase from "./CreateNewsUseCase";
 import { New } from "../DTOs/New";
+import { json } from "stream/consumers";
 
+const usecase = new CreateNewsUseCase()
 export default class CreateNewsController {
-    async handle(req: Request, res: Response): Promise<News> {
-        const usecase = new CreateNewsUseCase()
+    async handle(req: Request, res: Response) {
         const {image,title,body,external_link}: New = req.body 
-        const reponse = usecase.execute({ image,title,body,external_link })
-        return reponse
+        const reponse = await usecase.execute({ image,title,body,external_link })
+        res.json(reponse)
     }
 }
