@@ -28,6 +28,7 @@ model Comment {
   comment_in      String
   username_author String
   created_at      DateTime @default(now())
+  updated_at DateTime  @updatedAt
   comments        User     @relation("userComments", fields: [comment_by], references: [id], onDelete: Cascade)
 
   @@map("comments")
@@ -67,5 +68,6 @@ model News {
   external_link String?
   image String
   create_at DateTime @default(now())
+  updated_at DateTime  @updatedAt
   views Int @default(0)
 }
