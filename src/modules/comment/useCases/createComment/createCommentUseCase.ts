@@ -10,6 +10,7 @@ export class CreateCommentUseCase {
     comment_in,
     username_author,
   }: createCommentDTO): Promise<Comment> {
+    if (!content || !comment_by || !comment_in || !username_author) throw new AppError('Sem todas as credenciais')
     //@ts-ignore
     const comment = await prisma.comment.create({
       data: { content, comment_by, comment_in, username_author },
