@@ -7,7 +7,6 @@ export default class HistController {
     const { ref } = req.params;
     const useCase = new HistUseCase();
     const Hist = await prisma.hist.findFirst({ where: { ref } });
-    console.table(Hist);
     if (Hist) {
       const Res = await useCase.acess({ ref, prevHist: Hist });
       res.json(Res);
