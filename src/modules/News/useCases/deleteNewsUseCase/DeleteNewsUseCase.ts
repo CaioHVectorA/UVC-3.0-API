@@ -7,4 +7,8 @@ export class DeleteNewsUseCase {
         if (!deleted) throw new AppError('Notícia não encontrada')
         return deleted
     }
+    async deleteAll(): Promise<boolean> {
+        const allDeleted = await prisma.news.deleteMany()
+        return !!!!allDeleted
+    }
 }

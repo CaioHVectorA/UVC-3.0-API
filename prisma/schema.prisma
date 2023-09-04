@@ -17,6 +17,7 @@ model User {
   created_at DateTime  @default(now())
   updated_at DateTime  @updatedAt
   comments   Comment[] @relation("userComments")
+  image_path String?
 
   @@map("users")
 }
@@ -28,7 +29,7 @@ model Comment {
   comment_in      String
   username_author String
   created_at      DateTime @default(now())
-  comments        User     @relation("userComments", fields: [comment_by], references: [id], onDelete: Cascade,onUpdate: NoAction)
+  comments        User     @relation("userComments", fields: [comment_by], references: [id], onDelete: Cascade, onUpdate: NoAction)
 
   @@map("comments")
 }
@@ -61,11 +62,11 @@ model Like {
 }
 
 model News {
-  id Int @id @default(autoincrement())
-  title String @unique
-  body String?
+  id            Int      @id @default(autoincrement())
+  title         String   @unique
+  body          String?
   external_link String?
-  image String
-  create_at DateTime @default(now())
-  views Int @default(0)
+  image         String
+  create_at     DateTime @default(now())
+  views         Int      @default(0)
 }

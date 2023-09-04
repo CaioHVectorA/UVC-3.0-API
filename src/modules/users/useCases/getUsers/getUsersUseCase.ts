@@ -1,7 +1,8 @@
 import { User } from "@prisma/client";
 import { prisma } from "../../../../prisma.client";
 import { AppError } from "../../../../errors/AppError";
-
+import fs from 'fs'
+import { create_UUID } from "../../../../utils/UUID";
 type getOne = {
     id: string;
 }
@@ -11,7 +12,6 @@ export class getUsersUseCase {
         const users = await prisma.user.findMany()
         return users
     }
-
     async getOne({ id }: getOne): Promise<User> {
         const user = await prisma.user.findUnique({where: {id}})
         if (user) {

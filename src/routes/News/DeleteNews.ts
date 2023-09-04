@@ -7,4 +7,5 @@ const editcontroller = new EditNewController()
 export const ChangeNewRoute = Router()
 
 ChangeNewRoute.delete('/:id', deletecontroller.handle)
+ChangeNewRoute.delete('/', deletecontroller.handleAll)
 ChangeNewRoute.put('/:id', editcontroller.handle)

@@ -60,3 +60,5 @@ Cria uma notícia. A partir do Req.body, precisa das propriedades title e image,
 Edita uma notícia. Pode receber todas as propriedades de forma opcional no req.body e necessita do ID na req.params
 #### `Delete /News/:id`
 Deleta uma notícia a partir do seu ID.
+#### `Delete /News/`
+Deleta todas as notícias

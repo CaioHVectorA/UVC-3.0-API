@@ -4,3 +4,4 @@ export type New = {
     external_link?: string,
     image: string,
 }
+
