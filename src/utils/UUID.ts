@@ -7,5 +7,3 @@ export function create_UUID(): string {
     });
     return uuid;
 }
-
-console.log(create_UUID());

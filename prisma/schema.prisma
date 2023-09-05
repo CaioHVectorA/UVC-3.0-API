@@ -34,16 +34,6 @@ model Comment {
   @@map("comments")
 }
 
-// model comment_rent {
-//   user      User    @relation("user", fields: [userId], references: [id])
-//   userId    String
-//   comment   Comment @relation("comment", fields: [commentId], references: [id])
-//   commentId String
-
-//   @@id([userId, commentId])
-//   @@map("comment_rent")
-// }
-
 model Hist {
   ref        String   @unique
   id         String   @id @default(uuid())
