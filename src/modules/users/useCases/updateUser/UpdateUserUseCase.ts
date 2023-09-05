@@ -15,13 +15,12 @@ type UserUpType = {
 
 
 export class UpdateUserUseCase {
-    async execute({ id, username, password, imagePath }: UserUpType): Promise<number> {
+    async execute({ id, username, password, imagePath }: UserUpType): Promise<{username: string, image_path: string}> {
         const user = await prisma.user.findUnique({ where: { id } })
         let image_path;
         if (imagePath) {
             console.log('coisou!')
-            const UUID = randomUUID()
-            const path = '/assets/user_images/'+UUID
+            const path = '/assets/user_images/'+id+'.png'
             image_path = path
             saveBase64AsPNG(imagePath, process.cwd()+'/public/'+path)
         }
@@ -34,7 +33,10 @@ export class UpdateUserUseCase {
             image_path: image_path || user.image_path
         }
         console.log(newUser)
-        const updatedUser = prisma.user.update({ where: { id }, data: newUser })
-        return 100
+        const updatedUser = await prisma.user.update({ where: { id }, data: newUser })
+        return {
+             username: updatedUser.username,
+             image_path: updatedUser.image_path
+            }
     }
 }
