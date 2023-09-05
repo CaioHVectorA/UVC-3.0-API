@@ -1,8 +1,6 @@
 import { User } from "@prisma/client";
 import { prisma } from "../../../../prisma.client";
 import { AppError } from "../../../../errors/AppError";
-import fs from 'fs'
-import { create_UUID } from "../../../../utils/UUID";
 type getOne = {
     id: string;
 }

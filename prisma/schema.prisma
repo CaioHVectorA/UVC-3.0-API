@@ -17,7 +17,7 @@ model User {
   created_at DateTime  @default(now())
   updated_at DateTime  @updatedAt
   comments   Comment[] @relation("userComments")
-  image_path String?
+  image_path String    @default("assets/user_images/sample.png")
 
   @@map("users")
 }
