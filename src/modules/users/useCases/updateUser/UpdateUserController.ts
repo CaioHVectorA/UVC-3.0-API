@@ -6,7 +6,7 @@ export class UpdateUserController {
         const { id } = req.params
         const { username, password, imagePath } = req.body
         const userCase = new UpdateUserUseCase()
-        const result = await userCase.execute({ id, username, password })
+        const result = await userCase.execute({ id, username, password, imagePath })
         return res.status(200).json(result)
     }
 }
