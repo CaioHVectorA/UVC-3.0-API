@@ -20,7 +20,7 @@ export class UpdateUserUseCase {
         let image_path;
         if (imagePath) {
             console.log('coisou!')
-            const path = '/assets/user_images/'+id+'.png'
+            const path = 'assets/user_images/'+id+'.png'
             image_path = path
             saveBase64AsPNG(imagePath, process.cwd()+'/public/'+path)
         }

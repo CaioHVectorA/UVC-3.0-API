@@ -7,7 +7,7 @@ export class CreateUserUseCase {
   async execute({
     username,
     password,
-  }: CreateUserDTO): Promise<{ username: string; id: string }> {
+  }: CreateUserDTO): Promise<{ username: string; id: string, image_path: string }> {
     const cripPass = await hashPassword(password);
     const jaexiste = await prisma.user.findUnique({
       where: {
@@ -25,6 +25,7 @@ export class CreateUserUseCase {
     return {
       username: user.username,
       id: user.id,
+      image_path: user.image_path,
     };
   }
 }

@@ -7,7 +7,7 @@ export class getLoginUseCase {
   async execute({
     username,
     password,
-  }: getLoginDTO): Promise<{ username: string; id: string }> {
+  }: getLoginDTO): Promise<{ username: string; id: string, image_path: string, }> {
     const user = await prisma.user.findUnique({ where: { username } });
     if (user) {
       const wrongPassword = !(await comparePassword(password, user.password));
@@ -17,6 +17,7 @@ export class getLoginUseCase {
         return {
           username: user.username,
           id: user.id,
+          image_path: user.image_path
         };
       }
     } else {
