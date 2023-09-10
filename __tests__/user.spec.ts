@@ -1,6 +1,6 @@
 import request from 'supertest'
 import { app } from '../src'
-import { user_mockup } from '../src/utils/mockups'
+import { BASES64_EXAMPLES, user_mockup } from '../src/utils/mockups'
 
 describe('Rotas de usuário devem funcionar corretamente', () => {
     let password;
@@ -21,6 +21,12 @@ describe('Rotas de usuário devem funcionar corretamente', () => {
             password: 'kdljadksl'
         })
         expect(response.statusCode).toBe(400)
+    })
+    test('Deve mudar a imagem de usuário', async () => {
+        const response = await request(app).put('/user/'+userid).send({
+            image_path: BASES64_EXAMPLES[Math.floor(Math.random() * BASES64_EXAMPLES.length)]
+        })
+        expect(response.statusCode).toBe(200)
     })
     test('Deve deletar o usuário com sucesso!', async () => {
         const response = await request(app).delete('/user/' + userid)
