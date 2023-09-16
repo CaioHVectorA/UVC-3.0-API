@@ -22,10 +22,9 @@ export class UpdateUserUseCase {
             throw new AppError('Usuário não encontrado.')
         }
         if (imagePath) {
-            console.log('coisou!')
             const path = 'assets/user_images/'+id+'.png'
             image_path = path
-            saveBase64AsPNG(imagePath, process.cwd()+'/public/'+path)
+            await saveBase64AsPNG(imagePath, process.cwd()+'/public/'+path)
         }
         const newUser = {
             username: username || user.username,
